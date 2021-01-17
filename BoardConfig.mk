@@ -16,6 +16,9 @@
 
 DEVICE_PATH := device/xiaomi/ginkgo
 
+# For building with minimal manifest
+ALLOW_MISSING_DEPENDENCIES := true
+
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -104,7 +107,9 @@ TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_FBE := true
+#TW_INCLUDE_FBE := true
+### FBE Devices
+BOARD_USES_QCOM_FBE_DECRYPTION := true
 
 # TWRP specific build flags
 TW_THEME := portrait_hdpi
@@ -126,6 +131,21 @@ TARGET_USES_LOGD := true
 TARGET_USES_MKE2FS := true
 TW_EXCLUDE_TWRPAPP := true
 TW_NO_SCREEN_TIMEOUT := true
+#TARGET_RECOVERY_DEVICE_MODULES += \
+#    android.hardware.boot@1.0-service \
+#    android.hidl.base@1.0 \
+#    bootctrl.$(TARGET_BOARD_PLATFORM) \
+#    libicuuc \
+#    libion \
+#    libprocinfo \
+#    libxml2 \
+#TW_RECOVERY_ADDITIONAL_RELINK_FILES += \
+#    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
+#    $(TARGET_OUT_SHARED_LIBRARIES)/libicuuc.so \
+#    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
+#    $(TARGET_OUT_SHARED_LIBRARIES)/libprocinfo.so \
+#    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
+#    $(TARGET_OUT_VENDOR_EXECUTABLES)/hw/android.hardware.boot@1.0-service \
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31

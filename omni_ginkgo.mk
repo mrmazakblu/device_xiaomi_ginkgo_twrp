@@ -25,7 +25,7 @@ $(call inherit-product, vendor/omni/config/common.mk)
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := ginkgo
 PRODUCT_NAME := omni_ginkgo
-PRODUCT_BRAND := Xiaomi
+PRODUCT_BRAND := xiaomi
 PRODUCT_MODEL := Xiaomi Redmi Note 8
 PRODUCT_MANUFACTURER := Xiaomi
 
@@ -39,3 +39,6 @@ PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
     ro.build.product \
     ro.bootimage.build.date.utc \
     ro.build.date.utc
+    
+    # Inherit from hardware-specific part of the product configuration
+$(call inherit-product, device/$(PRODUCT_BRAND)/$(PRODUCT_DEVICE)/device.mk)
